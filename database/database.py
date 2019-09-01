@@ -1,12 +1,13 @@
 import pymysql
-import PI
+from PI import *
 
 class Database:
 	def __init__(self):
-		self.conn = pymysql.connect(host='localhost', user=userID, password=userPW, db=userDB)
+		self.conn = pymysql.connect(host='localhost', user=ID, password=PW, db=DB)
 		self.cur = self.conn.cursor()
 	def dbConnect(self):
-		self.cur.execute(userDB);
+		sql = "use "+DB
+		self.cur.execute(sql)
 
 	def bookInsert(self, title, image, author, price, isbn, pubdate, info):
 		self.cur.execute("INSERT INTO book (title, image, author, price, isbn, pubdate, info) VALUES (%s,%s,%s,%s,%s,%s,%s)",(title, image, author, price, isbn, pubdate, info))
